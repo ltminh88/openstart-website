@@ -1,0 +1,168 @@
+<section>
+  <div class="form-header row">
+    <div class="col-md-8"><h2>{{vm.product._id ? 'Edit Product' : 'New Product'}}</h2></div>
+    <div class="col-md-4 vcenter">
+      <a ng-show="vm.product._id" class="btn btn-primary" ng-click="vm.remove()">
+        <i class="glyphicon glyphicon-trash"></i>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.productForm" class="form-horizontal basic-form" ng-submit="vm.save(vm.form.productForm.$valid)" novalidate>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="title">Title</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="title" type="text" ng-model="vm.product.title" id="title" class="form-control" placeholder="Title" required>
+        </div>
+        <div ng-messages="vm.form.productForm.title.$error" role="alert">
+          <p class="help-block error-text" ng-message="required">Product title is required.</p>
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="productcategory">Product category</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <select class="form-control" name="productcategory" ng-model="vm.product.productcategory" id="productcategory" class="form-control">
+            <option value="Nhạc trẻ">Nhạc trẻ</option>
+            <option value="Nhạc đỏ">Nhạc đỏ</option>
+            <option value="Nhạc Âu Mỹ">Nhạc Âu Mỹ</option>
+            <option value="Nhạc thiếu nhi">Nhạc thiếu nhi</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="singername">Singer name</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="singername" type="text" ng-model="vm.product.singername" id="singername" class="form-control" placeholder="singername" required>
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="productwritername">Product writer name</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="productwritername" type="text" ng-model="vm.product.productwritername" id="productwritername" class="form-control" placeholder="productwritername">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="name">Name</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="name" type="text" ng-model="vm.product.name" id="name" class="form-control" placeholder="name">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="productlanguage">Language</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="productlanguage" type="text" ng-model="vm.product.productlanguage" id="productlanguage" class="form-control" placeholder="productlanguage" value="vietnam">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="url">url</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="urllink" type="text" ng-model="vm.product.urllink" id="urllink" class="form-control" placeholder="url link">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="crawlurl">crawlurl</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="crawlurl" type="text" ng-model="vm.product.crawlurl" id="crawlurl" class="form-control" placeholder="crawlurl">
+        </div>
+      </div>
+      <div>
+        <div>
+          <h4>Crawl</h4>
+          <a id="btnCrawl" ng-click="crawl()" class="btn-default btn">Crawl (Client)</a>
+          <a id="btnCrawlServer" ng-click="crawlServer()" class="btn-default btn">Crawl (Server)</a>
+          <a id="btnCrawlSettings" ng-click="showCrawlSettings()" class="btn-default btn">Settings</a>
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="urlmp3">urlmp3</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="urlmp3" type="text" ng-model="vm.product.urlmp3" id="urlmp3" class="form-control" placeholder="urlmp3">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="urlmp3">urlmp4</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="urlmp4" type="text" ng-model="vm.product.urlmp4" id="urlmp4" class="form-control" placeholder="urlmp4">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label class="control-label col-md-2 col-lg-2" for="thumbnail">thumbnail</label>
+        <div class="col-10 col-md-10 col-lg-10">
+          <input name="thumbnail" type="text" ng-model="vm.product.thumbnail" id="thumbnail" class="form-control" placeholder="thumbnail">
+          <img style="width: 180px; height: 180px" src={{vm.product.thumbnail}}>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h4>Save to server</h4>
+          <a id="btnSaveMp3" ng-click="saveMp3()" class="btn-default btn">Save mp3</a>
+          <a id="btnSaveMp4" ng-click="saveMp4()" class="btn-default btn">Save mp4</a>
+          <a id="btnSaveThumb" ng-click="saveThumbnail()" class="btn-default btn">Save thumb</a>
+          <a id="btnSaveAll" ng-click="saveAll()" class="btn-default btn">Save All</a>
+        </div>
+        <div>
+          <h4>Download </h4>
+          <a id="btnDownloadMp3" ng-click="downloadMp3()" class="btn-default btn">Download mp3</a>
+          <a id="btnDownloadMp4" ng-click="downloadMp4()" class="btn-default btn">Download mp4</a>
+          <a id="btnDownloadThumb" ng-click="downloadThumb()" class="btn-default btn">Download thumb</a>
+          <a id="btnDownloadAll" ng-click="downloadAll()" class="btn-default btn">Download All</a>
+        </div>
+      </div>        
+      <div class="form-group row">
+        <label class="control-label" for="lyrics">lyrics</label>
+        <div>
+          <textarea name="lyrics" data-ng-model="vm.product.lyrics" id="lyrics" class="form-control" cols="30" rows="5" placeholder="lyrics"></textarea>
+        </div>
+      </div>         
+      <div class="form-group row">
+        <label class="control-label" for="lyricsproduct">lyrics product</label>
+        <div>
+          <textarea name="lyricsproduct" data-ng-model="vm.product.lyricsproduct" id="lyricsproduct" class="form-control" cols="30" rows="5" placeholder="lyricsproduct"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label" for="subtitle">subtitle</label>
+        <div>
+          <textarea name="subtitle" data-ng-model="vm.product.subtitle" id="subtitle" class="form-control" cols="30" rows="5" placeholder="subtitle"></textarea>
+        </div>
+      </div>
+      <div>
+        <div class="">
+          <a id="btnConvertSubtitle" ng-click="convertSubtitle()" class="btn-default btn">Convert subtitle</a>
+        </div>
+      </div>    
+      <div class="form-group row">
+        <label class="control-label" for="description">Description</label>
+        <div>
+          <textarea name="description" data-ng-model="vm.product.description" id="description" class="form-control" cols="30" rows="5" placeholder="Description"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label" for="slideshow">Slideshow</label>
+        <div>
+          <textarea name="slideshow" ng-model="vm.product.slideshow" id="slideshow" class="form-control" cols="30" rows="5" placeholder="slideshow"></textarea>
+        </div>
+      </div>
+        <div>
+          <a id="btnUpdateSlideshow" ng-click="updateSlideshow()" class="btn-default btn">Update</a>
+          <a id="btnDownloadSlideshow" ng-click="downloadSlideshow()" class="btn-default btn">Download</a>
+        </div>      
+      <div>
+        <div id="preview-slideshow" class="simple-slideshow-container">
+          <div ng-repeat="img in vm.product.slideshowImages">
+            <img src="{{img}}">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group row">
+        <div class="col-md-2 col-lg-2"></div>
+        <div class="col-10 col-md-10 col-lg-10">
+          <button type="submit" class="btn btn-default">{{vm.product._id ? 'Update' : 'Create'}}</button>
+          <a id="btnBackToList" class="btn-primary btn" href="/admin/products">Back</a>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

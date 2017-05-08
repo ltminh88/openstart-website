@@ -1,0 +1,31 @@
+﻿<section>
+  <div class="page-header">
+    <h2>
+      Categorys
+      <a class="btn btn-primary pull-right" data-ui-sref="admin.categorys.create">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    </h2>
+  </div>
+  <div>
+    <div data-ng-repeat="category in vm.categorys" data-ui-sref="admin.categorys.edit({gameId: category._id})" class="row text-content gray-1">
+      <div class="col-md-3">
+        <img style="width: 100px; height: 100px" src="{{category.thumbnail}}">
+      </div>
+      <div  class="col-md-9">
+        <h3 ng-bind="category.title"></h3>
+        <p class="">{{category.lyrics | limitTo : 100}}</p>
+        <small class="list-group-item-text">
+          Posted on
+          <span ng-bind="category.created | date:'mediumDate'"></span>
+          by
+          <span ng-if="category.user" ng-bind="category.user.displayName"></span>
+          <span ng-if="!category.user">Deleted User</span>
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="categorys.$resolved && !categorys.length">
+    No categorys yet, why don't you <a data-ui-sref="admin.categorys.create">create one</a>?
+  </div>
+</section>

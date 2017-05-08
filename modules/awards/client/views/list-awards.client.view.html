@@ -1,0 +1,18 @@
+<section>
+  <div class="page-header">
+    <h1>Awards</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="award in vm.awards" ui-sref="awards.view({ awardId: award._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="award.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="award.user" ng-bind="award.user.displayName"></span>
+        <span ng-if="!award.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="award.title"></h4>
+      <p class="list-group-item-text" ng-bind="award.content"></p>
+    </a>
+  </div>
+</section>

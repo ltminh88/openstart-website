@@ -1,0 +1,23 @@
+<section>
+  <div class="page-header">
+    <h1>Categorys</h1>
+  </div>
+  <div>
+    <div ng-repeat="category in vm.categorys" ui-sref="categorys.view({ gameId: category._id })" class="row text-content gray-1">
+      <div class="col-md-3">
+        <img style="width: 100px; height: 100px" src="{{category.thumbnail}}">
+      </div>
+      <div  class="col-md-9">
+        <h3 ng-bind="category.title"></h3>
+        <p class="">{{category.lyrics | limitTo : 100}}</p>
+        <small class="list-group-item-text">
+          Posted on
+          <span ng-bind="category.created | date:'mediumDate'"></span>
+          by
+          <span ng-if="category.user" ng-bind="category.user.displayName"></span>
+          <span ng-if="!category.user">Deleted User</span>
+        </small>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+﻿<section>
+  <div class="page-header">
+    <h2>
+      Projects
+      <a class="btn btn-primary pull-right" data-ui-sref="admin.projects.create">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    </h2>
+  </div>
+  <div>
+    <div data-ng-repeat="project in vm.projects" data-ui-sref="admin.projects.edit({projectId: project._id})" class="row text-content gray-1">
+      <div class="col-md-3">
+        <img style="width: 100px; height: 100px" src="{{project.thumbnail}}">
+      </div>
+      <div  class="col-md-9">
+        <h3 ng-bind="project.title"></h3>
+        <p class="">{{project.lyrics | limitTo : 100}}</p>
+        <small class="list-group-item-text">
+          Posted on
+          <span ng-bind="project.created | date:'mediumDate'"></span>
+          by
+          <span ng-if="project.user" ng-bind="project.user.displayName"></span>
+          <span ng-if="!project.user">Deleted User</span>
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="projects.$resolved && !projects.length">
+    No projects yet, why don't you <a data-ui-sref="admin.projects.create">create one</a>?
+  </div>
+</section>

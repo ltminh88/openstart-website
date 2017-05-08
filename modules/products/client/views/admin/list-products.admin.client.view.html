@@ -1,0 +1,31 @@
+﻿<section>
+  <div class="page-header">
+    <h2>
+      Products
+      <a class="btn btn-primary pull-right" data-ui-sref="admin.products.create">
+        <i class="glyphicon glyphicon-plus"></i>
+      </a>
+    </h2>
+  </div>
+  <div>
+    <div data-ng-repeat="product in vm.products" data-ui-sref="admin.products.edit({productId: product._id})" class="row text-content gray-1">
+      <div class="col-md-3">
+        <img style="width: 100px; height: 100px" src="{{product.thumbnail}}">
+      </div>
+      <div  class="col-md-9">
+        <h3 ng-bind="product.title"></h3>
+        <p class="">{{product.lyrics | limitTo : 100}}</p>
+        <small class="list-group-item-text">
+          Posted on
+          <span ng-bind="product.created | date:'mediumDate'"></span>
+          by
+          <span ng-if="product.user" ng-bind="product.user.displayName"></span>
+          <span ng-if="!product.user">Deleted User</span>
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="products.$resolved && !products.length">
+    No products yet, why don't you <a data-ui-sref="admin.products.create">create one</a>?
+  </div>
+</section>

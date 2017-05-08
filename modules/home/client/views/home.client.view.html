@@ -1,0 +1,68 @@
+<section class="container-fluid">
+    <div class="text-center">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="search-box">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                            <input type="text" class="form-control input-lg" placeholder="Search" />
+                            <span class="input-group-btn">
+                      <button class="btn btn-info btn-lg" type="button">
+                          <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                  </span>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <!-- slider -->
+            <div id="feature-projects">
+                <div ng-repeat="project in vm.projects" on-finish-render="ngRepeatGamesSlideFinished">
+                    <div class="project-div">
+                        <div class="project-div-inner" style="background-image: url('{{project.thumbnail}}')">
+                            <!--
+            <a class="project-link-autohide" href="" >
+              <img class="play-icon" src="/modules/core/client/img/icon/hover-play-big.png"/>
+              <div class="more-info">
+                <span class="title">{{project.title}}</span>
+                <span class="rate-count"></span>
+              </div>
+            </a>
+            -->
+                        </div>
+                        <div class="project-info-block">
+                            <div><a class="title" ui-sref="projects.view({ projectId: project._id })">{{project.title}}</a></div>
+                            <div><a class="">{{project.singername}}</a></div>
+                            <div class="rate-count">{{project.rate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h3></h3>
+            </div>
+            <div ng-repeat="project in vm.artists">
+                <div class="project-div col-sm-2 col-md-2">
+                    <div class="project-div-inner" style="background-image: url('{{project.thumbnail}}')">
+                        <div>
+                            <span class="title">Title</span>
+                            <span class="rate-count"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        
+    </div>
+    <div class="row">
+        <div></div>
+    </div>
+</section>
